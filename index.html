@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>Movie DB</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css?q=12" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto" rel="stylesheet">
+</head>
+
+<body>
+    <div id="overlay">
+
+        <div id="popup-movie-details">
+            
+            <img src="images/cross.png" alt="cross" id="cross-btn" />
+
+            <div id="popup-innter-details">
+                <div class="image-div">
+                    <img src="images/poster1.jpg" alt="movie-poster" />
+                </div>
+                <div class="movie-details">
+                    <div class="hearder-info side-info">
+                        header headerheaderheaderheaderheaderheaderheaderheaderheader header headerheaderheaderheaderheaderheaderheaderheaderheader
+                        header headerheaderheaderheaderheaderheaderheaderheaderheader
+                    </div>
+                    <div class="movie-info side-info">
+                        What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                        and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                        the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+                        1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                        desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use
+                        it? It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                        of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model
+                        text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various
+                        versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour
+                        and the like).
+                    </div>
+                    <div class="footer-details side-info">
+                        footer footer footer footer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="header-upper" class="full box effect2">
+        <h3> Online Movie DB </label>
+    </div>
+    <div class="pad-left-5 pad-right-5" id="image-slider"></div>
+    <div class="full" id="wrapper-section-now-playing">
+        <div class="full" id="section-now-playing">
+            <h1 class="box effect2 active" data-type='now_playing' data-index="1" onclick="bindMovies(this)">Now Playing </h1>
+            <h1 class="box effect2" data-type='popular' data-index="2" onclick="bindMovies(this)">Popular </h1>
+            <h1 class="box effect2" data-type='top_rated' data-index="3" onclick="bindMovies(this)">Top Rated </h1>
+            <h1 class="box effect2" data-type='upcoming' data-index="4" onclick="bindMovies(this)">Upcoming </h1>
+        </div>
+        <div id="section-now-playing-movies"> </div>
+    </div>
+
+    <script src="js/moviedb.js" type="text/javascript" charset="utf-8" async></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('#image-slider').slider();
+            $('#section-now-playing-movies').getMovies('now_playing');
+        });
+        function bindMovies(type) {
+            document.getElementsByClassName('active')[0].setAttribute('class', 'box effect2');
+            document.getElementsByClassName('effect2')[type.getAttribute('data-index')].classList += ' active';
+            $('#section-now-playing-movies').getMovies(type.getAttribute('data-type'));
+        }
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id == 'slider-left-arrow') {
+                $('#image-slider').changeSlide('left');
+            }
+            else if (e.target && e.target.id == 'slider-right-arrow') {
+                $('#image-slider').changeSlide('right');
+            }
+        });
+    </script>
+</body>
+
+</html>
