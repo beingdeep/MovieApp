@@ -88,7 +88,7 @@ $ = (function () {
                     return currentIndex;
                 }
                 else if (/^\d+$/.test(index)) {
-                    if (currentIndex == index) {
+                    if (+currentIndex == index) {
                         return;
                     }
                     setNextImage(index, function () {
@@ -96,12 +96,12 @@ $ = (function () {
                     });
                 }
                 else if (index.toLowerCase() == 'left') {
-                    setNextImage(currentIndex - 1, function () {
+                    setNextImage(+currentIndex - 1, function () {
 
                     });
                 }
                 else if (index.toLowerCase() == 'right') {
-                    setNextImage(currentIndex + 1, function () {
+                    setNextImage(+currentIndex + 1, function () {
 
                     });
                 }
@@ -397,7 +397,6 @@ $ = (function () {
                 elpTrgt.style.display = ''
                 elpTrgt.style.opacity = 0;
 
-
                 elTrgt.parentElement.setAttribute('class', 'one6 box-img');
                 elTrgt.setAttribute('class', 'center poster effect8');
                 elTrgt.style.display = ''
@@ -409,8 +408,8 @@ $ = (function () {
                 elnTrgt.style.opacity = 0;
                 var anime = setInterval(function () {
                     elTrgt.style.opacity = +elTrgt.style.opacity + 1;
-                    elnTrgt.style.opacity = +elnTrgt.style.opacity + 1;
-                    elpTrgt.style.opacity = +elpTrgt.style.opacity + 1;
+                    elnTrgt.style.opacity = +elnTrgt.style.opacity + 0.5;
+                    elpTrgt.style.opacity = +elpTrgt.style.opacity + 0.5;
                     if (elTrgt.style.opacity == 1) {
                         clearInterval(anime);
                         return call();
